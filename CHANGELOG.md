@@ -1,5 +1,50 @@
 # Changelog
 
+## 2.3.7 - 2019-08-01
+### Fixed
+- Fix #227 - fixed issue where Neo fields could lose their content when updating to Craft 3.2. - thanks @brandonkelly
+
+## 2.3.6 - 2019-07-19
+### Update - Minor Patch for Craft 3.2
+- implement BlockElementInterface
+- update getOwner and correctly return ElementInterface
+- update afterSave
+
+## 2.3.5.2 - 2019-08-01
+### Fixed
+- Fix craft constraint to allow update to 3.2
+
+## 2.3.5.1 - 2019-07-31
+### Fixed
+- Fix #227 - fixed issue where Neo fields could lose their content when updating to Craft 3.2
+- Update craft version constraints
+
+## 2.3.5 - 2019-05-24
+### Fixed
+- Fix #210 - check if viewing a shared draft so it can retrieve the correct data
+
+## 2.3.4 - 2019-05-22
+### Fixed
+- Fix #214 - added in type filtering function that was missing for live preview
+- Fix #213 - get enabled blocks only instead of any status blocks for live preview
+
+## 2.3.3 - 2019-05-04
+### Fixed
+- Fix PostgreSQL error when saving new block types - thanks @ttempleton
+- Fixed issue where groups were duplicated when changing min/max blocks
+
+## 2.3.2 - 2019-04-24
+### Fixed
+- Ensure field layout IDs are set when setting a field's block types - Thanks @ttempleton
+
+## 2.3.1 - 2019-04-16
+### Fixed
+- Project Config - typecast group sortOrder to int
+
+## 2.3.0.1 - 2019-04-11
+### Changed
+- Disable saveModifiedBlocksOnly for now
+
 ## 2.3.0 - 2019-04-03
 ### Added
 - Added support for the project config rebuild functionality introduced in Craft 3.1.20

@@ -162,6 +162,22 @@ class Field extends BaseField implements EagerLoadingFieldInterface
 
 					$fieldLayout = Craft::$app->getFields()->assembleLayout($fieldLayoutPost, $requiredFieldPost);
 					$fieldLayout->type = Block::class;
+
+					// Ensure the field layout ID is set, if it exists
+					if (is_int($blockTypeId))
+					{
+						$layoutIdResult = (new Query)
+							->select(['fieldLayoutId'])
+							->from('{{%neoblocktypes}}')
+							->where(['id' => $blockTypeId])
+							->one();
+
+						if ($layoutIdResult !== null)
+						{
+							$fieldLayout->id = $layoutIdResult['fieldLayoutId'];
+						}
+					}
+
 					$newBlockType->setFieldLayout($fieldLayout);
 				}
 			}
@@ -587,6 +603,11 @@ class Field extends BaseField implements EagerLoadingFieldInterface
 	public function afterElementSave(ElementInterface $element, bool $isNew)
 	{
 		Neo::$plugin->fields->saveValue($this, $element, $isNew);
+
+        // Reset the field value if this is a new element
+        if ($element->duplicateOf || $isNew) {
+            $element->setFieldValue($this->handle, null);
+        }
 
 		parent::afterElementSave($element, $isNew);
 	}
